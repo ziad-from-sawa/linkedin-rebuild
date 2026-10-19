@@ -32,101 +32,99 @@
     print-color-adjust: exact;
   }
   .page {
-    width: 8.5in;
-    height: 11in;
-    padding: 0.42in 0.48in 0.36in;
-    position: relative;
-    overflow: hidden;
+    width: 8.5in; height: 11in;
+    padding: 0.4in 0.46in 0.34in;
+    position: relative; overflow: hidden;
     page-break-after: always;
-    display: flex;
-    flex-direction: column;
+    display: flex; flex-direction: column;
   }
   .page:last-child { page-break-after: auto; }
 
-  /* top bar */
   .bar {
     display: flex; justify-content: space-between; align-items: center;
-    padding-bottom: 10px; border-bottom: 1px solid var(--border);
-    font-size: 8.5px; color: var(--dim); letter-spacing: 0.02em;
+    padding-bottom: 9px; border-bottom: 1px solid var(--border);
+    font-size: 8px; color: var(--dim);
   }
   .brand { display: flex; align-items: center; gap: 7px; }
   .brand span { font-size: 15px; font-weight: 600; color: var(--ink); letter-spacing: -0.04em; }
   .bar .meta { text-transform: uppercase; letter-spacing: 0.08em; }
 
-  /* hero */
-  .hero { padding: 16px 0 12px; }
-  .eyebrow { font-size: 8px; color: var(--faint); text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 6px; }
-  h1 { font-size: 34px; font-weight: 700; letter-spacing: -0.045em; line-height: 1.02; }
-  .sub { font-size: 11.5px; color: var(--mid); margin-top: 7px; line-height: 1.45; max-width: 6.2in; }
-  .team { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
-  .pill {
-    font-size: 8.5px; padding: 3px 9px; border-radius: 100px;
-    border: 1px solid var(--border-mid); color: var(--mid);
-  }
+  .hero { padding: 12px 0 10px; display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
+  .eyebrow { font-size: 7.5px; color: var(--faint); text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 5px; }
+  h1 { font-size: 30px; font-weight: 700; letter-spacing: -0.045em; line-height: 1.02; }
+  .team { display: flex; gap: 5px; flex-wrap: wrap; justify-content: flex-end; max-width: 3.6in; }
+  .pill { font-size: 8px; padding: 3px 9px; border-radius: 100px; border: 1px solid var(--border-mid); color: var(--mid); white-space: nowrap; }
   .pill.lead { background: var(--ink); color: #111111; border-color: var(--ink); font-weight: 600; }
 
-  /* grid */
-  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; flex: 1; align-content: start; }
-  .card {
-    background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
-    padding: 10px 11px 11px;
-  }
-  .span2 { grid-column: span 2; }
-  .span3 { grid-column: span 3; }
-  .label { font-size: 7.5px; color: var(--faint); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 4px; }
-  h2 { font-size: 11.5px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 5px; color: var(--ink); }
-  p, li { font-size: 8.6px; line-height: 1.5; color: var(--dim); }
-  p + p { margin-top: 4px; }
+  /* the template: Section | What to write */
+  .sheet { border: 1px solid var(--border); border-radius: 12px; background: var(--panel); overflow: hidden; }
+  .row { display: grid; grid-template-columns: 1.42in 1fr; border-top: 1px solid var(--border); }
+  .row:first-child { border-top: 0; }
+  .sec { padding: 9px 10px 9px 12px; background: var(--panel-2); border-right: 1px solid var(--border); }
+  .sec h2 { font-size: 10.5px; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); line-height: 1.25; }
+  .sec .ask { font-size: 7.4px; color: var(--faint); line-height: 1.4; margin-top: 3px; }
+  .body { padding: 9px 12px 9px 12px; }
+
+  p, li, td { font-size: 9px; line-height: 1.48; color: var(--dim); }
+  p + p, p + ul, ul + p { margin-top: 3px; }
   b, strong { color: var(--ink); font-weight: 600; }
+  .lead-line { font-size: 10.5px; color: var(--ink); line-height: 1.45; font-weight: 500; }
   ul { list-style: none; }
   ul li { padding-left: 10px; position: relative; }
-  ul li + li { margin-top: 2px; }
+  ul li + li { margin-top: 1.5px; }
   ul li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 4px; height: 4px; border-radius: 50%; background: var(--signal-dim); }
-  code, .mono { font-family: "Cascadia Mono", Consolas, monospace; font-size: 8px; color: var(--signal); background: var(--panel-2); padding: 0 3px; border-radius: 3px; }
+  .mono { font-family: "Cascadia Mono", Consolas, monospace; font-size: 8px; color: var(--signal); background: #1d1d1d; padding: 0 3px; border-radius: 3px; }
+  .label { font-size: 7.2px; color: var(--faint); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 3px; }
 
-  /* steps table */
+  /* flow diagram */
+  .flow { display: flex; align-items: center; gap: 4px; margin-bottom: 7px; flex-wrap: nowrap; }
+  .node { font-size: 8px; padding: 3px 8px; border-radius: 100px; border: 1px solid var(--border-mid); color: var(--ink); white-space: nowrap; background: #151515; }
+  .node.end { background: var(--ink); color: #111111; border-color: var(--ink); font-weight: 600; }
+  .node.start { border-style: dashed; color: var(--mid); }
+  .arrow { color: var(--faint); font-size: 9px; }
+
   table { width: 100%; border-collapse: collapse; }
-  td { font-size: 8.6px; color: var(--dim); padding: 3.5px 0; border-top: 1px solid var(--border); vertical-align: top; line-height: 1.4; }
-  tr:first-child td { border-top: 0; }
-  td.n { width: 16px; color: var(--faint); font-weight: 700; }
-  td.s { width: 54px; color: var(--ink); font-weight: 600; }
-  td.t { width: 78px; }
-  .chip { font-size: 7.5px; padding: 1px 6px; border-radius: 100px; border: 1px solid var(--border-mid); color: var(--mid); white-space: nowrap; }
+  th { font-size: 7.2px; color: var(--faint); text-transform: uppercase; letter-spacing: 0.1em; text-align: left; font-weight: 600; padding: 0 6px 3px 0; }
+  td { padding: 3px 6px 3px 0; border-top: 1px solid var(--border); vertical-align: top; line-height: 1.38; font-size: 8.6px; }
+  td.n { width: 12px; color: var(--faint); font-weight: 700; }
+  td.s { width: 44px; color: var(--ink); font-weight: 600; }
+  td.t { width: 66px; }
+  .chip { font-size: 7.3px; padding: 1px 6px; border-radius: 100px; border: 1px solid var(--border-mid); color: var(--mid); white-space: nowrap; }
 
-  /* checklist */
-  ol.check { list-style: none; counter-reset: c; display: grid; grid-template-columns: 1fr 1fr; gap: 3px 10px; }
-  ol.check li { counter-increment: c; padding-left: 15px; position: relative; }
+  .cols { display: grid; gap: 12px; }
+  .c2 { grid-template-columns: 1fr 1fr; }
+  .c3 { grid-template-columns: 1fr 1fr 1fr; }
+  .c3w { grid-template-columns: 0.8fr 1.25fr 0.95fr; }
+
+  ol.check { list-style: none; counter-reset: c; }
+  ol.check li { counter-increment: c; padding-left: 14px; position: relative; }
+  ol.check li + li { margin-top: 1.5px; }
   ol.check li::before {
-    content: counter(c); position: absolute; left: 0; top: 1px;
-    width: 11px; height: 11px; border-radius: 50%; background: var(--panel-2); border: 1px solid var(--border-mid);
-    font-size: 6.5px; color: var(--ink); text-align: center; line-height: 10px; font-weight: 700;
+    content: counter(c); position: absolute; left: 0; top: 2px;
+    width: 10px; height: 10px; border-radius: 50%; background: #1d1d1d; border: 1px solid var(--border-mid);
+    font-size: 6px; color: var(--ink); text-align: center; line-height: 9px; font-weight: 700;
   }
+  .example { margin-top: 4px; padding: 5px 7px; border-left: 2px solid var(--signal-dim); background: #161616; border-radius: 0 6px 6px 0; }
+  .example p { font-size: 8.4px; color: var(--mid); }
 
-  .foot { margin-top: 8px; padding-top: 7px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 7.5px; color: var(--faint); }
-
-  /* page 2 */
-  .steps2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; flex: 1; align-content: start; }
-  .task h2 { display: flex; align-items: baseline; gap: 7px; }
-  .task h2 .num { font-size: 8px; color: var(--faint); font-weight: 700; letter-spacing: 0.06em; }
-  .task .who { font-size: 7.5px; color: var(--faint); margin: -2px 0 6px; text-transform: uppercase; letter-spacing: 0.1em; }
-  ul.box li { padding-left: 14px; }
-  ul.box li::before {
-    width: 7px; height: 7px; border-radius: 2px; top: 0.4em;
-    background: transparent; border: 1px solid var(--signal-dim);
-  }
-  .done { margin-top: 6px; padding-top: 5px; border-top: 1px dashed var(--border-mid); font-size: 8.3px; color: var(--mid); }
+  /* workstream checklists */
+  .ws { border: 1px solid var(--border); border-radius: 9px; padding: 8px 9px; background: #141414; }
+  .ws h3 { font-size: 9.6px; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
+  .ws .who { font-size: 7.2px; color: var(--faint); text-transform: uppercase; letter-spacing: 0.1em; margin: 1px 0 5px; }
+  .ws .step { font-size: 7.2px; color: var(--faint); text-transform: uppercase; letter-spacing: 0.1em; margin: 6px 0 2px; }
+  ul.box li { padding-left: 13px; }
+  ul.box li::before { width: 7px; height: 7px; border-radius: 2px; top: 0.42em; background: transparent; border: 1px solid var(--signal-dim); }
+  .done { margin-top: 6px; padding-top: 5px; border-top: 1px dashed var(--border-mid); font-size: 8.4px; color: var(--mid); line-height: 1.4; }
   .done b { color: var(--ink); }
-  .optional { border-style: dashed; border-color: var(--border-mid); background: transparent; }
+  .note { margin-top: 7px; font-size: 8.6px; color: var(--mid); }
 
-  .timeline { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; margin-top: 2px; }
-  .tl { padding: 6px 8px 0 0; border-top: 2px solid var(--border-mid); }
-  .tl .tm { font-size: 8px; font-weight: 700; color: var(--ink); }
-  .tl p { font-size: 8px; margin-top: 2px; }
+  .foot { margin-top: auto; padding-top: 7px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 7.4px; color: var(--faint); }
+  .spacer { height: 8px; }
 </style>
 </head>
 <body>
 
-<!-- PAGE 1: context -->
+<!-- PAGE 1: sections 1 to 6 -->
 <section class="page">
   <div class="bar">
     <div class="brand">
@@ -137,13 +135,14 @@
       </svg>
       <span>sawa</span>
     </div>
-    <div class="meta">LTV AI Build Exercise · Team 9 · Founder Workflow Brief · Build Day Oct 20</div>
+    <div class="meta">LTV AI Build Exercise · Founder Workflow Brief · Team 9 · Build Day Oct 20</div>
   </div>
 
   <div class="hero">
-    <div class="eyebrow">01 / The workflow</div>
-    <h1>LinkedIn Rebuild</h1>
-    <p class="sub">Paste a B2B founder's LinkedIn URL. Get back a teardown of their profile, a rebuilt version of it, a first post and two emails for Ziad to send.</p>
+    <div>
+      <div class="eyebrow">Founder Workflow Brief · Appendix B template</div>
+      <h1>LinkedIn Rebuild</h1>
+    </div>
     <div class="team">
       <span class="pill lead">Ziad Hassan · founder, PM</span>
       <span class="pill">Charlotte Driscoll</span>
@@ -152,135 +151,119 @@
     </div>
   </div>
 
-  <div class="grid">
+  <div class="sheet">
 
-    <div class="card">
-      <div class="label">1 · Startup</div>
-      <h2>Sawa</h2>
-      <p>An AI-native marketing agency, starting with a narrow focus on B2B content. Each client gets three plans:</p>
-      <ul>
-        <li><b>Grow.</b> LinkedIn content fills the top of the funnel.</li>
-        <li><b>Engage.</b> Readers become newsletter subscribers.</li>
-        <li><b>Convert.</b> Emails that get them to an event, a discount or an upsell.</li>
-      </ul>
-      <p>Clients pay a setup fee, then a monthly retainer to keep it running.</p>
+    <div class="row">
+      <div class="sec"><h2>1. Startup in one line</h2><div class="ask">What you're building and for whom</div></div>
+      <div class="body">
+        <p class="lead-line">Sawa is an AI-native marketing agency, starting with a narrow focus on B2B content, for founders and CEOs of B2B companies with 10 to 200 staff.</p>
+      </div>
     </div>
 
-    <div class="card">
-      <div class="label">2 · Why now</div>
-      <h2>LinkedIn is where the demand is</h2>
-      <p>Our biggest demand is LinkedIn content. The best pitch to a founder is their own profile, rebuilt, before we ever talk.</p>
-      <p>Ziad wants every pitch built from the founder's own profile and posts. This workflow makes one from a single URL.</p>
+    <div class="row">
+      <div class="sec"><h2>2. The workflow</h2><div class="ask">Its name, and why it matters most to your startup right now</div></div>
+      <div class="body">
+        <p><b>LinkedIn Rebuild.</b> One founder's LinkedIn URL goes in. A teardown of their profile, a rebuilt version of it, a first post and two emails for Ziad come out.</p>
+        <ul>
+          <li><b>Biggest demand.</b> LinkedIn content is what clients ask us for most. It feeds the three plans we run for each client: Grow (LinkedIn content fills the top of the funnel), Engage (a newsletter turns readers into subscribers) and Convert (emails get them to an event, a discount or an upsell).</li>
+          <li><b>Revenue.</b> Each client pays a setup fee, then a monthly retainer to keep it running. Winning founders is the job right now.</li>
+          <li><b>The pitch.</b> Ziad wants every first email to show the founder their own profile, rebuilt, so no two pitches look the same. This workflow makes one from a single URL.</li>
+        </ul>
+      </div>
     </div>
 
-    <div class="card">
-      <div class="label">3 · User and trigger</div>
-      <p><b>User:</b> Ziad. He runs it and approves everything before it goes out.</p>
-      <p><b>Trigger:</b> a founder Ziad wants as a client. He pastes their URL.</p>
-      <div class="label" style="margin-top:9px">4 · Input</div>
-      <p>One LinkedIn profile URL.</p>
-      <p><b>Real example:</b> <span class="mono">linkedin.com/in/ziad-has</span>, Ziad's own profile and our model of a good one.</p>
-      <p><b>Target:</b> founders and CEOs of B2B companies, 10 to 200 staff.</p>
+    <div class="row">
+      <div class="sec"><h2>3. User and trigger</h2><div class="ask">Who runs it, and what kicks it off</div></div>
+      <div class="body">
+        <p><b>User:</b> Ziad. He feeds in the URL and uses everything that comes out.</p>
+        <p><b>Trigger:</b> Ziad finds a founder he wants as a client and runs <span class="mono">/rebuild &lt;their LinkedIn URL&gt;</span> in Claude Code.</p>
+      </div>
     </div>
 
-    <div class="card span2">
-      <div class="label">5 · Steps</div>
-      <table>
-        <tr><td class="n">1</td><td class="s">Pull</td><td class="t"><span class="chip">Apify</span></td><td>Profile plus the last 90 days of posts, saved as JSON.</td></tr>
-        <tr><td class="n">2</td><td class="s">Score</td><td class="t"><span class="chip">Claude Code</span></td><td>Posting stats and Ziad's 7-point checklist. Each check is Pass or Fix, with the fact behind it.</td></tr>
-        <tr><td class="n">3</td><td class="s">Rebuild</td><td class="t"><span class="chip">Claude Code</span></td><td>HTML mockup of the top of their profile, fixed. Colors from their company site.</td></tr>
-        <tr><td class="n">4</td><td class="s">Post</td><td class="t"><span class="chip">Claude Code</span></td><td>One first post we would write for them, in their voice, from their own material.</td></tr>
-        <tr><td class="n">5</td><td class="s">Email</td><td class="t"><span class="chip">Claude Code</span></td><td>Email 1 shows the work, with no link. Email 2 is a bump with the 15-minute booking link.</td></tr>
-        <tr><td class="n">6</td><td class="s">Review</td><td class="t"><span class="chip">Ziad</span></td><td>Reads the whole folder. Drafts the emails into his own inbox.</td></tr>
-      </table>
+    <div class="row">
+      <div class="sec"><h2>4. Input</h2><div class="ask">Exactly what goes in, with a real example</div></div>
+      <div class="body">
+        <p>One public LinkedIn profile URL of a B2B founder or CEO. Nothing else.</p>
+        <p><b>Real example:</b> <span class="mono">https://www.linkedin.com/in/ziad-has/</span>. Ziad's own profile. Sawa is a small B2B company, so it fits the target, and it is our model of a good profile.</p>
+      </div>
     </div>
 
-    <div class="card">
-      <div class="label">6 · Output</div>
-      <p>One folder per founder, <span class="mono">out/&lt;name&gt;/</span>:</p>
-      <ul>
-        <li><span class="mono">teardown.md</span></li>
-        <li><span class="mono">mockup.html</span></li>
-        <li><span class="mono">first-post.md</span></li>
-        <li><span class="mono">email-1.md</span></li>
-        <li><span class="mono">email-2-bump.md</span></li>
-      </ul>
-      <p style="margin-top:5px"><b>Booking link (email 2 only):</b> <span class="mono">calendly.com/ziad-startsawa/15min</span></p>
+    <div class="row">
+      <div class="sec"><h2>5. Steps</h2><div class="ask">The workflow as numbered steps, including the tools or data each step uses</div></div>
+      <div class="body">
+        <div class="flow">
+          <span class="node start">LinkedIn URL</span><span class="arrow">→</span>
+          <span class="node">1 Pull</span><span class="arrow">→</span>
+          <span class="node">2 Score</span><span class="arrow">→</span>
+          <span class="node">3 Rebuild</span><span class="arrow">→</span>
+          <span class="node">4 Post</span><span class="arrow">→</span>
+          <span class="node">5 Email</span><span class="arrow">→</span>
+          <span class="node end">6 Ziad reviews</span>
+        </div>
+        <table>
+          <tr><th></th><th>Step</th><th>Tool</th><th>Data it uses</th><th>It writes</th></tr>
+          <tr><td class="n">1</td><td class="s">Pull</td><td class="t"><span class="chip">Apify</span></td><td>The URL</td><td>Profile JSON, plus posts JSON for the last 90 days</td></tr>
+          <tr><td class="n">2</td><td class="s">Score</td><td class="t"><span class="chip">Claude Code</span></td><td>Both JSON files, <span class="mono">profile-checklist.md</span></td><td><span class="mono">teardown.md</span>: posting stats, 7 checks marked Pass or Fix</td></tr>
+          <tr><td class="n">3</td><td class="s">Rebuild</td><td class="t"><span class="chip">Claude Code</span></td><td>The teardown, their headshot, colors from their company website</td><td><span class="mono">mockup.html</span>: the top of their profile, every Fix fixed</td></tr>
+          <tr><td class="n">4</td><td class="s">Post</td><td class="t"><span class="chip">Claude Code</span></td><td>Their recent posts and About section</td><td><span class="mono">first-post.md</span>: one post in their voice</td></tr>
+          <tr><td class="n">5</td><td class="s">Email</td><td class="t"><span class="chip">Claude Code</span></td><td>The teardown, <span class="mono">ziad-voice.md</span>, <span class="mono">anti-ai-rules.md</span>, the Calendly link</td><td><span class="mono">email-1.md</span> with no links, <span class="mono">email-2-bump.md</span> with the link</td></tr>
+          <tr><td class="n">6</td><td class="s">Review</td><td class="t"><span class="chip">Ziad</span></td><td>The whole folder</td><td>Drafts in Ziad's own inbox</td></tr>
+        </table>
+      </div>
     </div>
 
-    <div class="card span2">
-      <div class="label">What great looks like</div>
-      <h2>Ziad's checklist for a good founder profile</h2>
-      <ol class="check">
-        <li>Headshot on a solid color background</li>
-        <li>Website link under the name</li>
-        <li>A banner</li>
-        <li>About section filled out, in bullets</li>
-        <li>At least one featured post with an image</li>
-        <li>Short, clear headline</li>
-        <li>Follow button instead of Connect</li>
-      </ol>
-      <p style="margin-top:6px"><b>Plus posting stats:</b> posts in the last 90 days, days since the last post, average reactions and comments.</p>
-    </div>
-
-    <div class="card">
-      <div class="label">How we judge it</div>
-      <ul>
-        <li>Every number matches the scraped data.</li>
-        <li>The email names one specific thing from their profile or posts.</li>
-        <li>Email 1 has no link.</li>
-        <li>Zero em dashes. Passes the anti-AI rules.</li>
-        <li>Ziad would send it without edits.</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <div class="label">7 · Human checkpoints</div>
-      <ul>
-        <li>Ziad reads the whole folder before anything leaves.</li>
-        <li>Emails land as drafts in Ziad's inbox. He sends them.</li>
-        <li>The bump goes only if there is no reply, and only when Ziad says so.</li>
-        <li>Nothing sends on its own.</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <div class="label">8 · Definition of done</div>
-      <p><span class="mono">/rebuild &lt;url&gt;</span> in Claude Code writes all five files.</p>
-      <p>Works on <b>3 real founder URLs</b> with consistent results.</p>
-      <div class="label" style="margin-top:9px">9 · Stretch goals</div>
-      <ul>
-        <li>A web page with a URL box and a Generate button</li>
-        <li>Banner saved as a PNG at 1584 x 396</li>
-        <li>New headshot on a solid background</li>
-        <li>Emails dropped straight into Ziad's drafts</li>
-        <li>A list of URLs in, one folder each</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <div class="label">10 · Workstreams</div>
-      <ul>
-        <li><b>A · Data.</b> Apify setup, the pull, the teardown. Owner brings their own Apify key.</li>
-        <li><b>B · Rebuild.</b> The mockup and the first post.</li>
-        <li><b>C · Email and demo.</b> Both emails, 3 test runs, the video.</li>
-        <li><b>Ziad.</b> Answers questions and judges the output, without taking the keyboard.</li>
-      </ul>
-    </div>
-
-    <div class="card span2">
-      <div class="label">11 · Inputs ready to use</div>
-      <p>Private repo: <span class="mono">github.com/ziad-from-sawa/linkedin-rebuild</span>. It holds this brief, the Sawa context, the checklist, the anti-AI rules, Ziad's voice notes and the test URLs. Open it in Claude Code and it reads <span class="mono">CLAUDE.md</span> first.</p>
-    </div>
-
-    <div class="card">
-      <div class="label">12 · Open questions, first 10 min</div>
-      <ul>
-        <li>Who takes A, B and C?</li>
-        <li>Who coaches? Who types first?</li>
-        <li>How many days before the bump?</li>
-        <li>Email 1: attach the mockup, or offer to send it?</li>
-      </ul>
+    <div class="row">
+      <div class="sec"><h2>6. Output</h2><div class="ask">Exactly what comes out, with an example of what "great" looks like and how you'll judge it</div></div>
+      <div class="body">
+        <div class="cols c3w">
+          <div>
+            <div class="label">What comes out</div>
+            <p>One folder per founder, <span class="mono">out/&lt;name&gt;/</span>:</p>
+            <ul>
+              <li><span class="mono">teardown.md</span></li>
+              <li><span class="mono">mockup.html</span></li>
+              <li><span class="mono">first-post.md</span></li>
+              <li><span class="mono">email-1.md</span></li>
+              <li><span class="mono">email-2-bump.md</span></li>
+            </ul>
+            <div class="label" style="margin-top:7px">Great profile: Ziad's 7 checks</div>
+            <ol class="check">
+              <li>Headshot on a solid color background</li>
+              <li>Website link under the name</li>
+              <li>A banner</li>
+              <li>About section filled out, in bullets</li>
+              <li>At least one featured post with an image</li>
+              <li>Short, clear headline</li>
+              <li>Follow button instead of Connect</li>
+            </ol>
+          </div>
+          <div>
+            <div class="label">What great looks like</div>
+            <ul>
+              <li><b>Mockup:</b> passes all 7 checks. Ziad's profile is the example.</li>
+              <li><b>Teardown:</b> every check carries the fact behind it. Example line, format only:</li>
+            </ul>
+            <div class="example"><p>3 · Banner · <b>Fix</b> · <span class="mono">background_picture_url</span> is empty. Add a banner that says what the company does, in its own colors.</p></div>
+            <ul style="margin-top:4px">
+              <li><b>Email 1:</b> opens with a detail only this founder would recognize, names 2 fixes from the teardown, offers the mockup and ends on a yes or no question. Under 100 words. No links.</li>
+              <li><b>Email 2:</b> two or three lines, a few days later, with <span class="mono">calendly.com/ziad-startsawa/15min</span> for a 15-minute call.</li>
+              <li><b>First post:</b> in their voice, on a topic they already post about. Every fact comes from their profile or posts.</li>
+            </ul>
+            <p style="margin-top:4px">We have no past email that won. The team drafts version 1 on Ziad's URL, Ziad marks it up, and the marked-up draft becomes the bar.</p>
+          </div>
+          <div>
+            <div class="label">How we judge it</div>
+            <ul>
+              <li>Every number matches the pulled JSON.</li>
+              <li>The email names one specific thing from their profile or posts.</li>
+              <li>Email 1 has no link.</li>
+              <li>Zero em dashes. Passes the anti-AI rules.</li>
+              <li>Ziad would send it without edits.</li>
+              <li>3 runs on 3 founders give the same quality.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
 
   </div>
@@ -291,7 +274,7 @@
   </div>
 </section>
 
-<!-- PAGE 2: starter checklist -->
+<!-- PAGE 2: sections 7 to 12 -->
 <section class="page">
   <div class="bar">
     <div class="brand">
@@ -302,108 +285,130 @@
       </svg>
       <span>sawa</span>
     </div>
-    <div class="meta">LTV AI Build Exercise · Team 9 · Starter checklist</div>
+    <div class="meta">LTV AI Build Exercise · Founder Workflow Brief · Team 9 · Build Day Oct 20</div>
   </div>
+  <div class="spacer"></div>
 
-  <div class="hero" style="padding-bottom:10px">
-    <div class="eyebrow">02 / Build it</div>
-    <h1 style="font-size:28px">Starter checklist</h1>
-    <p class="sub">Build each step alone and test it on Ziad's URL before adding the next. Rotate the keyboard. The teammate with the least AI experience drives first.</p>
-  </div>
+  <div class="sheet">
 
-  <div class="steps2">
-
-    <div class="card task">
-      <h2><span class="num">00</span>Setup</h2>
-      <div class="who">Everyone · 10 min</div>
-      <ul class="box">
-        <li>Accept the GitHub invite. Clone <span class="mono">linkedin-rebuild</span>.</li>
-        <li>Open the folder in Claude Code: <span class="mono">claude</span></li>
-        <li>Ask: "Read CLAUDE.md and the brief. Restate the workflow as numbered steps with inputs and outputs."</li>
-        <li>Fix anything Claude gets wrong before building.</li>
-      </ul>
-      <div class="done"><b>Done when</b> Claude restates all 6 steps correctly.</div>
+    <div class="row">
+      <div class="sec"><h2>7. Human checkpoints</h2><div class="ask">Where a person reviews before anything is sent, posted, or decided</div></div>
+      <div class="body">
+        <ul>
+          <li><b>Before outreach:</b> Ziad reads the whole folder. Any number that doesn't match the data stops the run.</li>
+          <li><b>Before sending:</b> emails land as drafts in Ziad's own inbox. He edits and sends them himself.</li>
+          <li><b>Before the bump:</b> only if there is no reply, and only when Ziad says so.</li>
+          <li><b>Posting:</b> the first post is a sample for the pitch. Nothing posts to anyone's account.</li>
+        </ul>
+      </div>
     </div>
 
-    <div class="card task">
-      <h2><span class="num">01</span>Pull the data</h2>
-      <div class="who">Workstream A</div>
-      <ul class="box">
-        <li>Make a free Apify account. Paste your token into <span class="mono">.env</span> as <span class="mono">APIFY_API_TOKEN</span>.</li>
-        <li>Profile: <span class="mono">apimaestro/linkedin-profile-batch-scraper-no-cookies-required</span></li>
-        <li>Posts: <span class="mono">apimaestro/linkedin-batch-profile-posts-scraper</span>. It has no date filter, so keep the last 90 days yourself.</li>
-        <li>Skip <span class="mono">harvestapi</span> actors. Free plans cap them at 10 runs.</li>
-        <li>Save raw JSON to <span class="mono">out/&lt;name&gt;/raw/</span>. Then score it against <span class="mono">context/profile-checklist.md</span>.</li>
-      </ul>
-      <div class="done"><b>Done when</b> <span class="mono">teardown.md</span> for Ziad's URL shows all 7 checks and every number matches the JSON.</div>
+    <div class="row">
+      <div class="sec"><h2>8. Definition of done</h2><div class="ask">The smallest genuinely useful version, achievable in about 80 minutes</div></div>
+      <div class="body">
+        <ul>
+          <li><span class="mono">/rebuild &lt;url&gt;</span> in Claude Code writes all five files for one founder.</li>
+          <li>It runs on 3 founder URLs with the same quality each time.</li>
+          <li>Plain files are enough. The mockup is HTML, and Ziad pastes the emails into his inbox.</li>
+        </ul>
+      </div>
     </div>
 
-    <div class="card task">
-      <h2><span class="num">02</span>Produce the mockup</h2>
-      <div class="who">Workstream B</div>
-      <ul class="box">
-        <li>Build <span class="mono">mockup.html</span>: the top of their LinkedIn profile, with every Fix from the teardown fixed.</li>
-        <li>Include: banner, headshot on a solid color, short headline, website link, Follow button, About in bullets, one featured post with an image.</li>
-        <li>Pull their brand colors from their company website.</li>
-        <li>Open it in a browser and compare it to Ziad's profile.</li>
-      </ul>
-      <div class="done"><b>Done when</b> the mockup passes all 7 checks by eye.</div>
+    <div class="row">
+      <div class="sec"><h2>9. Stretch goals</h2><div class="ask">What you'd add with more time</div></div>
+      <div class="body">
+        <ul>
+          <li><b>UI/UX wrapper:</b> a local page with a URL box and a Generate button. It runs <span class="mono">claude -p "/rebuild &lt;url&gt;"</span> and shows the five outputs, with the mockup rendered.</li>
+          <li>The banner exported as a PNG at 1584 x 396, ready to upload.</li>
+          <li>A new headshot on a solid color background.</li>
+          <li>Emails created straight in Ziad's Gmail drafts.</li>
+          <li>Batch mode: a list of URLs in, one folder each.</li>
+        </ul>
+      </div>
     </div>
 
-    <div class="card task">
-      <h2><span class="num">03</span>Produce the first post</h2>
-      <div class="who">Workstream B</div>
-      <ul class="box">
-        <li>Read their recent posts and About section first.</li>
-        <li>Write one post on a topic they already talk about, in their voice.</li>
-        <li>Use only facts from their profile or posts. Invent nothing.</li>
-        <li>Run the anti-AI rules. Search for dashes by hand.</li>
-      </ul>
-      <div class="done"><b>Done when</b> the founder could post it without explaining where a claim came from.</div>
+    <div class="row">
+      <div class="sec"><h2>10. Workstreams</h2><div class="ask">How three teammates can split the build (core workflow; inputs, data, and connections; testing and demo)</div></div>
+      <div class="body">
+        <div class="cols c3" style="gap:8px">
+          <div class="ws">
+            <h3>Inputs, data, and connections</h3>
+            <div class="who">Teammate 1 · step 1</div>
+            <div class="step">Pull the data</div>
+            <ul class="box">
+              <li>Make a free Apify account. Put your own token in <span class="mono">.env</span> as <span class="mono">APIFY_API_TOKEN</span>.</li>
+              <li>Profile: <span class="mono">apimaestro/linkedin-profile-batch-scraper-no-cookies-required</span></li>
+              <li>Posts: <span class="mono">apimaestro/linkedin-batch-profile-posts-scraper</span>. It has no date filter, so keep the last 90 days yourself.</li>
+              <li>Skip <span class="mono">harvestapi</span> actors. Free plans cap them at 10 runs.</li>
+              <li>Save JSON to <span class="mono">out/&lt;name&gt;/raw/</span>. Ziad's URL first, then the 3 test URLs.</li>
+            </ul>
+            <div class="done"><b>Done when</b> 4 profiles are pulled and each has headline, about, banner, website, featured and follower fields.</div>
+          </div>
+          <div class="ws">
+            <h3>Core workflow</h3>
+            <div class="who">Teammate 2 · steps 2 to 5</div>
+            <div class="step">Produce the teardown and mockup</div>
+            <ul class="box">
+              <li>Score against <span class="mono">profile-checklist.md</span>, write <span class="mono">teardown.md</span>.</li>
+              <li>Build <span class="mono">mockup.html</span> in their brand colors. Open it in a browser and compare it with Ziad's profile.</li>
+            </ul>
+            <div class="step">Produce the first post</div>
+            <ul class="box">
+              <li>Read their posts and About first. Write one post on a topic they already cover. Invent nothing.</li>
+            </ul>
+            <div class="step">Produce the email</div>
+            <ul class="box">
+              <li>Email 1 and the bump, in Ziad's voice. The team writes the copy.</li>
+              <li>Save steps 2 to 5 as <span class="mono">.claude/commands/rebuild.md</span>.</li>
+            </ul>
+            <div class="done"><b>Done when</b> <span class="mono">/rebuild</span> on Ziad's URL writes all five files.</div>
+          </div>
+          <div class="ws">
+            <h3>Testing and demo</h3>
+            <div class="who">Teammate 3 · checks and video</div>
+            <div class="step">Test</div>
+            <ul class="box">
+              <li>Run <span class="mono">/rebuild</span> on the 3 test URLs.</li>
+              <li>Check every output against the judging list in section 6.</li>
+              <li>Search every file for em and en dashes.</li>
+              <li>Log what breaks. Hand fixes to the core builder one at a time.</li>
+            </ul>
+            <div class="step">Demo</div>
+            <ul class="box">
+              <li>Record the 2-minute video: real URL in, real folder out (due 9 pm Tuesday).</li>
+            </ul>
+            <div class="done"><b>Done when</b> 3 runs give 3 complete folders of the same quality.</div>
+          </div>
+        </div>
+        <p class="note"><b>Ziad</b> owns the problem and judges the output without taking the keyboard. Everyone drives for at least 10 minutes, and the teammate newest to AI goes first. Whoever finishes first takes the UI/UX wrapper.</p>
+      </div>
     </div>
 
-    <div class="card task">
-      <h2><span class="num">04</span>Produce the email</h2>
-      <div class="who">Workstream C</div>
-      <ul class="box">
-        <li><b>Email 1:</b> from Ziad, in his voice (<span class="mono">context/ziad-voice.md</span>). Opens with one specific detail from their profile. Shows the work. No links.</li>
-        <li><b>Email 2, the bump:</b> short. Adds <span class="mono">calendly.com/ziad-startsawa/15min</span> for a 15-minute call.</li>
-        <li>The team writes the copy. There is no past winner to copy from.</li>
-        <li>Save both as drafts for Ziad. Never send.</li>
-      </ul>
-      <div class="done"><b>Done when</b> Ziad reads both and would send them as written.</div>
+    <div class="row">
+      <div class="sec"><h2>11. Inputs ready to use</h2><div class="ask">Link to a shared folder of real (anonymized where needed) sample data</div></div>
+      <div class="body">
+        <ul>
+          <li><b>Shared folder:</b> <span class="mono">github.com/ziad-from-sawa/linkedin-rebuild</span> (private, Ziad sends invites).</li>
+          <li><b>In it:</b> this brief, <span class="mono">CLAUDE.md</span> (Claude Code reads it first), the Sawa context, the profile checklist, Ziad's voice notes, the anti-AI rules and <span class="mono">inputs/test-urls.md</span>.</li>
+          <li><b>Sample inputs:</b> Ziad's profile, plus 3 B2B founder URLs Ziad adds to <span class="mono">inputs/test-urls.md</span> before class.</li>
+          <li><b>Sample data:</b> these are public profiles of real people, so pulled JSON stays in <span class="mono">out/</span> and is never committed or posted in the team thread.</li>
+          <li><b>Setup, everyone, 10 minutes:</b> accept the invite, clone the repo, open it in Claude Code and ask: "Read CLAUDE.md and the brief. Restate the workflow as numbered steps with inputs and outputs." Fix anything it gets wrong before building.</li>
+        </ul>
+      </div>
     </div>
 
-    <div class="card task">
-      <h2><span class="num">05</span>Save it as one command</h2>
-      <div class="who">A and C</div>
-      <ul class="box">
-        <li>Create <span class="mono">.claude/commands/rebuild.md</span> so <span class="mono">/rebuild &lt;url&gt;</span> runs steps 01 to 04 in order.</li>
-        <li>Run it on 3 founder URLs from <span class="mono">inputs/test-urls.md</span>.</li>
-        <li>Log what breaks. Fix one thing at a time.</li>
-      </ul>
-      <div class="done"><b>Done when</b> 3 runs give 3 complete folders of the same quality.</div>
+    <div class="row">
+      <div class="sec"><h2>12. Open questions</h2><div class="ask">Anything to settle with your team in the first ten minutes</div></div>
+      <div class="body">
+        <ul>
+          <li>Who takes each workstream, and who coaches?</li>
+          <li>How many days before the bump?</li>
+          <li>Email 1: attach the mockup, or offer to send it?</li>
+          <li>Mockup headshot: their current photo, or a placeholder until the stretch goal?</li>
+        </ul>
+      </div>
     </div>
 
-    <div class="card task optional span2" style="grid-column: span 2;">
-      <h2><span class="num">06</span>Optional: UI/UX wrapper</h2>
-      <div class="who">Whoever finishes first</div>
-      <ul class="box">
-        <li>A local web page with one URL box and a Generate button. It runs <span class="mono">claude -p "/rebuild &lt;url&gt;"</span> and shows the five outputs side by side, with the mockup rendered.</li>
-      </ul>
-    </div>
-
-  </div>
-
-  <div class="card" style="margin-top:8px">
-    <div class="label">The 80 minutes</div>
-    <div class="timeline">
-      <div class="tl"><div class="tm">0:05</div><p>Ziad walks the brief. Pick A, B, C.</p></div>
-      <div class="tl"><div class="tm">0:15</div><p>Sprint 1: first teardown on Ziad's URL.</p></div>
-      <div class="tl"><div class="tm">0:50</div><p>Screenshot of the first output to the team thread.</p></div>
-      <div class="tl"><div class="tm">0:55</div><p>Sprint 2: <span class="mono">/rebuild</span> on 3 URLs, fix what breaks.</p></div>
-      <div class="tl"><div class="tm">1:15</div><p>Pick tonight's finish list and who records the video (due 9 pm).</p></div>
-    </div>
   </div>
 
   <div class="foot">
