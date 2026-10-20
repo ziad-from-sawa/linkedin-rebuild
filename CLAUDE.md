@@ -39,6 +39,7 @@ One command, `/rebuild <linkedin-url>`. It takes a B2B founder's LinkedIn profil
 ## Files
 
 - `context/sawa.md`: the business
+- `context/startsawa-website.md`: saved copy of startsawa.com
 - `context/profile-checklist.md`: what good looks like
 - `context/ziad-voice.md`: how the emails sound
 - `context/anti-ai-rules.md`: the writing rules
