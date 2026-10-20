@@ -1,0 +1,103 @@
+// Jeff Bussgang's run. Every fact traces to out/bussgang/raw/profile-2026-10-20.md
+// and posts-2026-10-20.json (pulled 2026-10-20, viewed as a 1st-degree connection).
+window.DATA = {
+  slug: "bussgang",
+  url: "https://www.linkedin.com/in/bussgang/",
+  urlShort: "linkedin.com/in/bussgang",
+  name: "Jeffrey Bussgang",
+  headline: "General Partner and Co-Founder, Flybridge Capital Partners; Senior Lecturer, Harvard Business School",
+  meta: "Greater Boston · 43,943 followers",
+  photo: "assets/bussgang/photo-800.jpg",
+  note: "",
+
+  // screenshot size in CSS px (the PNGs are 2x)
+  shotFull: { src: "assets/bussgang/profile-full.png", w: 792, h: 1218 },
+  shotTop: { src: "assets/bussgang/profile-top.png", w: 792, h: 520 },
+  regions: {
+    banner: { x: 0, y: 0, w: 792, h: 198, lbl: "inside" },
+    headshot: { x: 28, y: 106, w: 152, h: 152 },
+    headline: { x: 24, y: 328, w: 486, h: 40, lbl: "tr" },
+    website: { x: 132, y: 455, w: 127, h: 48, lbl: "right" },
+    about: { x: 14, y: 592, w: 764, h: 224 },
+    featured: { x: 14, y: 838, w: 764, h: 372 },
+  },
+  checks: [
+    { key: "banner", name: "A banner", short: "Banner", status: "pass", at: 1.9, fact: "Book banner for The Experimentation Machine" },
+    { key: "headshot", name: "Headshot on a solid color", short: "Headshot", status: "fix", at: 2.6, fact: "Busy office background, not a solid color" },
+    { key: "headline", name: "Short, clear headline", short: "Headline", status: "fix", at: 3.3, fact: "Two lines: Flybridge partner and HBS lecturer" },
+    { key: "website", name: "Website link under the name", short: "Website link", status: "pass", at: 4.0, fact: "“Visit my website” goes to jeffbussgang.com" },
+    { key: "follow", name: "Follow button, not Connect", short: "Follow button", status: "unk", at: 4.7, fact: "Can't tell: we're connected, so LinkedIn shows Message" },
+    { key: "about", name: "About section in bullets", short: "About", status: "fix", at: 6.1, fact: "One long paragraph, no bullets" },
+    { key: "featured", name: "Featured post with an image", short: "Featured", status: "pass", at: 7.5, fact: "Book pre-order post with an image: 213 reactions" },
+  ],
+  // own posts per week over the 13 weeks to 2026-10-20, oldest first (reposts left out)
+  weekly: [2, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 2],
+  gap: { from: 1, to: 7, label: "50 days, no posts" },
+  kpis: [
+    { value: 7, label: "posts" },
+    { value: 50, label: "day gap" },
+    { value: 0, label: "followers", text: "44K" },
+  ],
+  fixes: [
+    { title: "Post every week", viz: "cadence", foot: "7 posts in 90 days. Aim for 1 a week." },
+    { title: "Go black: photo and banner", viz: "look", foot: "A solid photo and one dark look" },
+    { title: "Shorten the headline", viz: "headline", foot: "One line people remember" },
+  ],
+  look: {
+    bannerBefore: "assets/bussgang/banner-1400.jpg",
+    bannerAfter: "assets/bussgang/banner-black.png",
+    photoBefore: "assets/bussgang/photo-800.jpg",
+    photoAfter: "assets/bussgang/headshot-black.png",
+  },
+  mockup: {
+    banner: "assets/bussgang/banner-black.png",
+    photo: "assets/bussgang/headshot-black.png",
+    name: "Jeffrey Bussgang",
+    headline: "Co-founder, Flybridge (seed VC) · Senior Lecturer, HBS",
+    location: "Greater Boston",
+    site: "Visit my website",
+    followers: "43,943 followers · 500+ connections",
+    buttons: ["+ Follow", "Message"],
+    about: [
+      "Co-founder and General Partner at Flybridge: seed-stage VC in Boston and NYC, over $1B AUM.",
+      "Teach entrepreneurship and VC at Harvard Business School.",
+      "Author of The Experimentation Machine, Mastering the VC Game and Entering StartUpLand.",
+      "Founder before VC: Upromise (co-founder, President/COO) and Open Market.",
+    ],
+    featuredImg: "assets/bussgang/featured-img.png",
+    featuredText: "The Experimentation Machine is now available for pre-order!",
+    featuredStats: "213 reactions · 46 comments",
+    badges: { headline: "New headline", about: "Now in bullets", photo: "Black background", banner: "Black banner" },
+    companies: [
+      { name: "Flybridge Capital Partners", crop: "-716px -402px" },
+      { name: "Harvard Business School", crop: "-716px -465px" },
+    ],
+    scrollTo: 420,
+  },
+  post: [
+    "I wrote a whole book about running experiments.",
+    "So here's one on myself: a post every week until the end of the year.",
+    "If you're a founder testing your way to product-market fit, follow along.",
+  ],
+  files: [
+    { name: "teardown", ext: "MD" },
+    { name: "mockup", ext: "HTML" },
+    { name: "first post", ext: "MD" },
+    { name: "email 1", ext: "MD" },
+    { name: "email 2", ext: "MD" },
+  ],
+  email: {
+    to: "Jeffrey Bussgang",
+    fromName: "Ziad Hassan",
+    fromPhoto: "assets/headshot.png",
+    subject: "I rebuilt the top of your LinkedIn",
+    body: [
+      "Hi Jeff,",
+      "You have 44K followers, but only 7 posts in the last 90 days (and one stretch of 50 days with none).",
+      "I mocked up a cleaner, darker top card for you:",
+      "[mockup]",
+      "Want the files? Happy to send them over (no charge).",
+      "Ziad",
+    ],
+  },
+};

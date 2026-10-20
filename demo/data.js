@@ -1,0 +1,106 @@
+// Everything the demo shows about the profile. Every fact traces to
+// out/ziad-has/raw/profile-2026-10-20.md and posts-2026-10-20.json (pulled 2026-10-20).
+window.DATA = {
+  slug: "ziad-has",
+  url: "https://www.linkedin.com/in/ziad-has/",
+  urlShort: "linkedin.com/in/ziad-has",
+  name: "Ziad Hassan",
+  headline: "MBA Candidate at Harvard Business School",
+  meta: "Boston, Massachusetts · 9,285 followers",
+  photo: "assets/headshot.png",
+  note: "Demo run on my own profile, so I'm the prospect.",
+
+  // screenshot size in CSS px (the PNGs are 2x)
+  shotFull: { src: "assets/profile-full.png", w: 792, h: 1201 },
+  shotTop: { src: "assets/profile-top.png", w: 792, h: 520 },
+  regions: {
+    banner: { x: 0, y: 0, w: 792, h: 198, lbl: "inside" },
+    headshot: { x: 28, y: 106, w: 152, h: 152 },
+    headline: { x: 24, y: 326, w: 324, h: 24, lbl: "right" },
+    website: { x: 24, y: 377, w: 170, h: 20, lbl: "right" },
+    about: { x: 14, y: 452, w: 764, h: 376 },
+    featured: { x: 14, y: 850, w: 764, h: 344 },
+  },
+  checks: [
+    { key: "banner", name: "A banner", short: "Banner", status: "pass", at: 1.9, fact: "Sawa banner: “The marketing agency for the AI age.”" },
+    { key: "headshot", name: "Headshot on a solid color", short: "Headshot", status: "pass", at: 2.6, fact: "Black and white photo, plain gray background" },
+    { key: "headline", name: "Short, clear headline", short: "Headline", status: "fix", at: 3.3, fact: "“MBA Candidate at Harvard Business School”" },
+    { key: "website", name: "Website link under the name", short: "Website link", status: "pass", at: 4.0, fact: "“More about my startup” goes to startsawa.com" },
+    { key: "follow", name: "Follow button, not Connect", short: "Follow button", status: "pass", at: 4.7, fact: "“Make follow primary” is on in settings" },
+    { key: "about", name: "About section in bullets", short: "About", status: "fix", at: 6.1, fact: "Bullets list past jobs. Sawa is the last line." },
+    { key: "featured", name: "Featured post with an image", short: "Featured", status: "pass", at: 7.5, fact: "Jun 2 post with a photo: 310 reactions" },
+  ],
+  // posts per week over the 13 weeks to 2026-10-20, oldest first
+  weekly: [0, 6, 5, 1, 0, 0, 0, 1, 5, 2, 3, 6, 3],
+  // reactions on each of the 32 posts in the window, oldest first
+  reactions: [12, 21, 13, 12, 23, 13, 11, 12, 8, 1, 7, 57, 12, 15, 3, 15, 7, 4, 80, 9, 28, 51, 6, 8, 9, 10, 7, 37, 9, 18, 17, 4],
+  avgReactions: 16.8,
+  best: { index: 18, label: "Sep 28 · Startup update", value: 80 },
+  kpis: [
+    { value: 32, label: "posts" },
+    { value: 0, label: "last post", text: "today" },
+    { value: 16.8, decimals: 1, label: "avg reactions" },
+  ],
+  fixes: [
+    { title: "Name Sawa in your headline", viz: "headline", foot: "Visitors see what you sell first", co: { old: "Stealth Startup", new: "Sawa" } },
+    { title: "Lead your About with Sawa", viz: "about", foot: "Sawa first, your story second" },
+    { title: "Do more of your best post", viz: "best", tag: "Do more", kind: "pass", foot: "80 reactions vs a 16.8 average" },
+  ],
+  about: {
+    before: ["My story: Morocco to HBS", "Northeastern", "BCG", "Amazon Robotics", "Cengage Group", "Risepoint"],
+    sawaBefore: "Sawa (last line)",
+    after: ["What Sawa does", "Who it's for", "How to start"],
+    story: "Your story",
+    past: "Before: BCG, Amazon, Risepoint",
+  },
+  mockup: {
+    banner: "assets/banner.png",
+    photo: "assets/headshot.png",
+    name: "Ziad Hassan",
+    headline: "Co-founder of Sawa · LinkedIn and email content for B2B founders",
+    location: "Boston, Massachusetts, United States",
+    site: "More about my startup",
+    followers: "9,285 followers · 500+ connections",
+    about: [
+      "Sawa writes the LinkedIn posts, newsletters and email campaigns that grow a B2B audience you own.",
+      "For B2B SaaS companies, their founders and professional services firms.",
+      "Up and running in four weeks: learn the business, plan, build, then run it.",
+      "Before Sawa: BCG, Amazon Robotics, Risepoint. Now an MBA candidate at HBS.",
+    ],
+    featuredImg: "assets/featured-img.png",
+    featuredText: "I haven't posted on LinkedIn in exactly one year. Maybe now is a good time to reintroduce myself.",
+    featuredStats: "310 reactions · 49 comments",
+    badges: { headline: "New headline", about: "Now in bullets" },
+    companies: [
+      { name: "Sawa", logo: "sawa", badge: "Was Stealth Startup" },
+      { name: "Harvard Business School", crop: "-716px -462px" },
+    ],
+    scrollTo: 420,
+  },
+  post: [
+    "I spent almost a year on outbound.",
+    "28% connection acceptance. 8.4% response rate.",
+    "But 10 replies a week still nets out to about 2 calls.",
+  ],
+  files: [
+    { name: "teardown", ext: "MD" },
+    { name: "mockup", ext: "HTML" },
+    { name: "first post", ext: "MD" },
+    { name: "email 1", ext: "MD" },
+    { name: "email 2", ext: "MD" },
+  ],
+  email: {
+    to: "Ziad Hassan",
+    fromName: "Ziad Hassan",
+    fromPhoto: "assets/headshot.png",
+    subject: "I rebuilt the top of your LinkedIn",
+    body: [
+      "Hey Ziad,",
+      "32 posts in 90 days is a lot (nice). But your headline still says MBA Candidate, so people can't tell you run Sawa.",
+      "I mocked up a fix:",
+      "[mockup]",
+      "Want the text? Happy to send it over (no charge).",
+      "Ziad",
+    ],
+  },
+};
