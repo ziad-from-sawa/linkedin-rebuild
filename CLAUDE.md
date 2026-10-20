@@ -16,7 +16,7 @@ One command, `/rebuild <linkedin-url>`. It takes a B2B founder's LinkedIn profil
 
 ## Steps
 
-1. **Pull.** Apify, with the token in `.env`. Profile: `apimaestro/linkedin-profile-batch-scraper-no-cookies-required`. Posts: `apimaestro/linkedin-batch-profile-posts-scraper`. Save raw JSON to `out/<slug>/raw/`.
+1. **Pull.** Run `python scripts/pull.py <linkedin-url>`. It prints the folder, `out/<slug>/`, and saves everything to `out/<slug>/raw/`: profile, own posts (last 90 days and all), posting stats, company page, homepage and its colors, and images. File shapes: `docs/pull-output.md`. Apify actors, with the token in `.env`: profile `apimaestro/linkedin-profile-full-sections-scraper` (replaces the batch profile scraper in the brief: same fields plus skills, recommendations and fuller experience), posts `apimaestro/linkedin-batch-profile-posts-scraper`, company `apimaestro/linkedin-company-detail`.
 2. **Score.** Check against `context/profile-checklist.md`. Write `teardown.md`.
 3. **Rebuild.** Write `mockup.html`. Use colors from their company website.
 4. **Post.** Write `first-post.md` from their own posts and About section.
@@ -32,7 +32,8 @@ One command, `/rebuild <linkedin-url>`. It takes a B2B founder's LinkedIn profil
 
 ## Apify notes
 
-- The posts actor has no date filter. Pull, then keep the last 90 days locally.
+- The posts actor has no date filter. `scripts/pull.py` keeps the last 90 days and drops reposts.
+- Cost is about $0.02 per profile plus $0.005 per post (max 100). Check credit before batch runs.
 - `harvestapi` actors cap free plans at 10 lifetime runs. Use the `apimaestro` actors above.
 - A free Apify account is enough for testing.
 
@@ -44,3 +45,5 @@ One command, `/rebuild <linkedin-url>`. It takes a B2B founder's LinkedIn profil
 - `context/ziad-voice.md`: how the emails sound
 - `context/anti-ai-rules.md`: the writing rules
 - `inputs/test-urls.md`: profiles to test on
+- `scripts/pull.py`: step 1, the data pull
+- `docs/pull-output.md`: what step 1 writes, field by field
