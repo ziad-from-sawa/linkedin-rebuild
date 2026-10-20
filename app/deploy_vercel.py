@@ -7,8 +7,10 @@ Vercel serves the page (app/static). Every /api and /out request is passed throu
 the laptop running app/server.py, which `tailscale funnel --bg 8787` exposes at that
 address. Claude Code runs on the laptop, on its own login, so no API key is involved.
 
-Builds app/.site/linkedin-rebuild/ (the folder name becomes the Vercel project name) and
-runs `npx vercel deploy --prod`. Needs Node and a Vercel login (`npx vercel login`).
+Builds ~/.linkedin-rebuild-site/linkedin-rebuild/ (the folder name becomes the Vercel project
+name) and runs `npx vercel deploy --prod`. The folder sits outside this repo on purpose: built
+inside it, the Vercel CLI connects the project to the GitHub repo, and every push to main then
+replaces the page with the repo. Needs Node and a Vercel login (`npx vercel login`).
 """
 
 import json
@@ -18,7 +20,7 @@ import sys
 from pathlib import Path
 
 APP = Path(__file__).resolve().parent
-SITE = APP / ".site" / "linkedin-rebuild"
+SITE = Path.home() / ".linkedin-rebuild-site" / "linkedin-rebuild"
 
 
 def main():
