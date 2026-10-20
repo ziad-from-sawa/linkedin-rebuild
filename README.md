@@ -25,4 +25,18 @@ In Claude Code, from this folder:
 - Output lands in `out/<their-name>/`. Attach `mockup.png` to the email in `email.md`.
 - Each run spends Dan's Apify credits once per founder. A second run on the same person reuses the saved pull.
 
+## Demo app
+
+```
+python app/server.py
+```
+
+Then open http://127.0.0.1:8787. It walks the same five steps as the demo video: Choose, Scan, Recommend, Generate, Email.
+
+- **Paste a URL** and pick the button you see on their live profile, then press Scan. A new founder takes about a minute to pull and a few minutes for Claude; the scan runs over their profile while Claude scores it, and each check lights up green or amber as the verdicts land.
+- **Saved founders open instantly**, so demo with someone already pulled. A link like `http://127.0.0.1:8787/#/jeffrey-bussgang/2` jumps straight to a step.
+- **Arrow keys** move between steps. **R** replays the scan.
+- **Needs** Python 3, Chrome or Edge, Claude Code installed and logged in (`claude` in a terminal), and the Apify token in `.env`.
+- Nothing sends from the app. Copy the email, attach `mockup.png`, send it from your own inbox.
+
 `CLAUDE.md` has the steps, the rules and the file map.

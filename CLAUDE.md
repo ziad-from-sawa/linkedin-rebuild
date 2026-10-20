@@ -62,3 +62,5 @@ The brief's first post and bump email are not part of the flow for now.
 - `context/email-template.md`: Ziad's email, word for word
 - `scripts/mockup.py`: step 5, the before-and-after picture
 - `scripts/check.py`: step 7, the judging list as tests
+- `app/server.py`: the demo app (`app/static/`), a page over the same flow
+- `docs/test-plan.md`, `docs/test-log.md`: how the flow is tested, and what each cycle found
