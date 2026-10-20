@@ -18,8 +18,8 @@ Step 2 (Score) reads this file and writes `teardown.md`. It turns Ziad's `profil
 
 1. **Pass or Fix.** Nothing in between.
 2. **Cite the fact.** Name the field and what it holds, or what you saw in a saved file.
-3. **Missing means Fix.** If a field isn't in the JSON, write "not found, confirm on live page" and score it **Fix**. Never guess a Pass.
-4. **Ziad scores 7 of 7.** Run his profile first (https://www.linkedin.com/in/ziad-has/). If he fails a check, the rubric is wrong. Fix the rubric, not his score.
+3. **Missing means Fix.** The pull drops the key when a profile lacks a section, so a missing field means they don't have it. Write "not found in the pulled profile" and score it **Fix**. Never guess a Pass.
+4. **Ziad scores 7 of 7.** Run his profile first: `/rebuild https://www.linkedin.com/in/ziad-has/ follow`. If he fails a check, the rubric is wrong. Fix the rubric, not his score.
 
 ## How each line looks in `teardown.md`
 
@@ -37,7 +37,7 @@ End with `Score: <n> of 7 pass`.
 
 ## 1. Headshot
 
-**Look at:** `profile_picture_url`. Save it as `raw/headshot.jpg` and open it.
+**Look at:** `basic_info.profile_picture_url`. The pull saves it as `raw/images/headshot.*`. Open that file and look.
 
 **Pass** when all of these hold:
 - One person, face clearly visible, head and shoulders filling most of the frame
@@ -72,18 +72,19 @@ End with `Score: <n> of 7 pass`.
 
 ## 3. Banner
 
-**Look at:** `background_picture_url`. Save it as `raw/banner.jpg` and open it.
+**Look at:** `basic_info.background_picture_url`. The pull saves it as `raw/images/banner.*`. Open that file and look.
 
 **Pass** when all of these hold:
 - It's a custom image
 - It has text you can read at normal size
-- The text says what the company does or who it helps
+- The text says what their own company does or who it helps (for a Fit No, what they themselves do)
 
 **Fix** if any of these is true:
 - Empty or missing
 - LinkedIn's default blue and grey banner
 - A custom image with no message: skyline, stock photo, pattern, event photo
 - Text too small to read
+- Text about something else: a book, an event, a quote, a slogan that never says what the company does
 
 **Cite:** what the banner shows. *"`background_picture_url` is a city skyline with no text."*
 
@@ -91,7 +92,7 @@ End with `Score: <n> of 7 pass`.
 
 ## 4. About
 
-**Look at:** `about`. Count the characters and the bullet lines. A bullet line starts with `•`, `-`, `*`, `·`, an emoji, or a number followed by `.` or `)`.
+**Look at:** `about`. Count the characters and the bullet lines. A bullet line starts with `•`, `-`, `*`, `+`, `·`, an emoji, or a number followed by `.` or `)`.
 
 **Pass** when:
 - `about` has 2 or more bullet lines, anywhere in the text
@@ -106,7 +107,7 @@ End with `Score: <n> of 7 pass`.
 
 ## 5. Featured
 
-**Look at:** `featured[]` and each item's `image_url` **(confirm with Dan's JSON)**.
+**Look at:** `featured[]` and each item's `image_url`. Images are saved as `raw/images/featured-N.*`.
 
 **Pass** when:
 - At least 1 featured item has a non-empty `image_url`
@@ -114,7 +115,7 @@ End with `Score: <n> of 7 pass`.
 **Fix** if any of these is true:
 - `featured` is empty
 - No featured item has an image
-- `featured` isn't in the JSON ("not found, confirm on live page")
+- `featured` isn't in the JSON ("not found in the pulled profile")
 
 **Cite:** *"`featured` has 2 items, 0 with an image."*
 
@@ -142,17 +143,16 @@ End with `Score: <n> of 7 pass`.
 
 ## 7. Main button
 
-**Look at:** the live profile first. Use `is_creator` **(confirm with Dan's JSON)** only if you can't check the live page. LinkedIn retired Creator Mode in 2024, so the JSON can be out of date.
+**Look at:** the word Ziad passes to `/rebuild` after the URL, `follow` or `connect`, which he reads off the live page. The JSON can't answer this: `is_creator` is `false` on Ziad's own profile, which shows Follow.
 
 **Pass** when:
-- The live page shows **Follow** as the main button, or
-- No live check was possible and `is_creator` is `true` (say so)
+- Ziad passed `follow`
 
 **Fix** if any of these is true:
-- The live page shows **Connect** as the main button
-- No live check was possible and `is_creator` is `false` or missing (say so)
+- Ziad passed `connect`
+- Ziad passed nothing. Write "not confirmed on the live page". This Fix never goes in the email.
 
-**Cite:** *"Live page shows Connect."* or *"`is_creator` is false, live page not checked."*
+**Cite:** *"Ziad saw Connect on the live page."* or *"Not confirmed on the live page."*
 
 **Fix line:** "In Settings, set your main profile button to Follow."
 
@@ -160,7 +160,7 @@ End with `Score: <n> of 7 pass`.
 
 ## Posting stats
 
-**Look at:** the posts JSON. Field names for date, reactions, comments and repost are **(confirm with Dan's JSON)**.
+**Look at:** `raw/stats.json`. The pull already did the counting, so copy its numbers and don't recompute. Fields are in `docs/pull-output.md`. Reposts are already removed, and `raw/pull-meta.json` says how many (`posts.reposts_dropped`).
 
 **Window:** the 90 days up to and including the pull date. Put the pull date at the top of the teardown.
 
@@ -202,4 +202,4 @@ End with `Score: <n> of 7 pass`.
 - About: any bullets pass, wherever they are
 - Reposts: never counted, for the post count or the best post
 
-Still waiting on Dan's JSON for the field names marked **(confirm)**.
+Field names are confirmed against Dan's pulls of 4 profiles on Oct 20 (`docs/pull-output.md`).
