@@ -31,10 +31,11 @@ export GEMINI_API_KEY=your_key   # https://aistudio.google.com/apikey
 python scripts/generate_photos.py \
   --json out/<slug>/raw/profile.json \
   --rubric context/profile-checklist.md \
-  --photo out/<slug>/raw/images/headshot.jpg
+  --photo out/<slug>/raw/images/headshot.jpg \
+  --out out/<slug>/photos
 ```
 
-`--photo` takes `.jpg`, `.png` or `.webp`. Leave it off to download `basic_info.profile_picture_url` instead. Output goes to `output/` in the folder you run from:
+`--photo` takes `.jpg`, `.png` or `.webp`. Leave it off to download `basic_info.profile_picture_url` instead. Output goes to `--out` (default `output/` in the folder you run from). `/rebuild <url> photos` runs this for you and puts the results in `out/<slug>/photos/`. The key can live in `.env` as `GEMINI_API_KEY=`; the script reads it from there.
 
 - `profile.png`: 800x800 headshot
 - `cover.jpg`: 1584x396 banner

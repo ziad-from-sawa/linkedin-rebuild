@@ -2,7 +2,7 @@
 LinkedIn profile picture + cover photo generator (Gemini).
 
 Input:  Apify LinkedIn profile JSON (+ optional local .jpg) and a rubric .txt
-Output: output/profile.png (800x800) and output/cover.jpg (1584x396)
+Output: <out>/profile.png (800x800) and <out>/cover.jpg (1584x396), <out> defaults to output/
 
 Steps:
   1. Gemini (text) reads the profile + rubric and writes the image prompts.
@@ -12,7 +12,7 @@ Steps:
 
 Usage:
   export GEMINI_API_KEY=your_key
-  python generate_photos.py --json profile.json --rubric rubric.txt [--photo photo.jpg]
+  python generate_photos.py --json profile.json --rubric rubric.txt [--photo photo.jpg] [--out folder]
 """
 import argparse, json, os, sys
 from io import BytesIO
@@ -25,7 +25,21 @@ from google.genai import types
 TEXT_MODEL = os.getenv("GEMINI_TEXT_MODEL", "gemini-3.8-flash")
 IMAGE_MODEL = os.getenv("GEMINI_IMAGE_MODEL", "gemini-3.1-flash-image")
 OUT_DIR = "output"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+
+def load_env_key():
+    """Use GEMINI_API_KEY from the repo's .env when it isn't exported already."""
+    path = os.path.join(ROOT, ".env")
+    if os.getenv("GEMINI_API_KEY") or not os.path.exists(path):
+        return
+    for line in open(path, encoding="utf-8"):
+        key, _, value = line.partition("=")
+        if key.strip() == "GEMINI_API_KEY" and value.strip():
+            os.environ["GEMINI_API_KEY"] = value.strip().strip('"').strip("'")
+
+
+load_env_key()
 client = genai.Client()  # reads GEMINI_API_KEY
 
 
@@ -107,8 +121,10 @@ def main():
     ap.add_argument("--json", required=True, help="Apify profile JSON")
     ap.add_argument("--rubric", required=True, help="Rubric text file")
     ap.add_argument("--photo", help="Optional local photo (otherwise uses JSON URL)")
+    ap.add_argument("--out", default=OUT_DIR, help="Folder for the results, e.g. out/<slug>/photos")
     a = ap.parse_args()
-    os.makedirs(OUT_DIR, exist_ok=True)
+    out = a.out
+    os.makedirs(out, exist_ok=True)
 
     profile = load_profile(a.json)
     rubric = open(a.rubric, encoding="utf-8").read()
@@ -116,17 +132,17 @@ def main():
 
     print("1/3 Planning prompts...")
     prompts = plan_prompts(profile_summary(profile), rubric)
-    json.dump(prompts, open(f"{OUT_DIR}/prompts.json", "w"), indent=2)
+    json.dump(prompts, open(os.path.join(out, "prompts.json"), "w"), indent=2)
 
     print("2/3 Editing profile picture...")
     pic = gemini_image([prompts["profile_prompt"] + " Square 1:1 framing.", photo])
-    ImageOps.fit(pic, (800, 800), centering=(0.5, 0.4)).save(f"{OUT_DIR}/profile.png")
+    ImageOps.fit(pic, (800, 800), centering=(0.5, 0.4)).save(os.path.join(out, "profile.png"))
 
     print("3/3 Generating cover photo...")
     cover = gemini_image([prompts["cover_prompt"] + " Very wide panoramic landscape composition."])
-    ImageOps.fit(cover, (1584, 396)).save(f"{OUT_DIR}/cover.jpg", quality=95)
+    ImageOps.fit(cover, (1584, 396)).save(os.path.join(out, "cover.jpg"), quality=95)
 
-    print(f"Done -> {OUT_DIR}/profile.png, {OUT_DIR}/cover.jpg, {OUT_DIR}/prompts.json")
+    print(f"Done -> {out}/profile.png, {out}/cover.jpg, {out}/prompts.json")
 
 
 if __name__ == "__main__":
