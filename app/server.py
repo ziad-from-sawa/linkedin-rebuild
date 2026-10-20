@@ -8,11 +8,16 @@ founder, on the team's Apify key) and `claude -p "/rebuild <url>"` for everythin
 else. The page reads the files the run writes in out/<slug>/ as they appear, so a
 founder already built opens instantly.
 
-Local only: it listens on 127.0.0.1 and nothing is sent anywhere but Apify and Claude.
+It listens on 127.0.0.1. To share it, Tailscale Funnel can expose this port and the
+Vercel page (app/deploy_vercel.py) proxies to it. Set APP_KEY in .env first: every /api
+and /out request then needs that key (header, cookie or ?k=), so nobody else can spend
+the Apify credit or run Claude on this laptop.
 Standard library only.
 """
 
+import hmac
 import json
+import os
 import mimetypes
 import re
 import shutil
@@ -24,12 +29,28 @@ import uuid
 from datetime import datetime
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import unquote, urlparse
+from http.cookies import SimpleCookie
+from urllib.parse import parse_qs, unquote, urlparse
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "out"
 STATIC = Path(__file__).resolve().parent / "static"
 PORT = 8787
+
+
+def env_value(name):
+    if os.environ.get(name):
+        return os.environ[name]
+    env = ROOT / ".env"
+    if env.exists():
+        for line in env.read_text(encoding="utf-8").splitlines():
+            key, _, value = line.partition("=")
+            if key.strip() == name and value.strip():
+                return value.strip().strip('"').strip("'")
+    return ""
+
+
+APP_KEY = env_value("APP_KEY")
 
 USERNAME_RE = re.compile(r"linkedin\.com/in/([A-Za-z0-9_-]+)/?", re.I)  # no % or quotes: it reaches a shell on Windows
 CHECK_LINE = re.compile(r"^([1-7]) · (.+?) · (Pass|Fix) · (.+)$")
@@ -258,8 +279,18 @@ class Handler(BaseHTTPRequestHandler):
         path = (base / unquote(rel)).resolve()
         return path if path.is_file() and base.resolve() in path.parents else None
 
+    def authorized(self):
+        if not APP_KEY:
+            return True
+        cookie = SimpleCookie(self.headers.get("Cookie") or "")
+        supplied = (self.headers.get("X-App-Key") or (cookie["appkey"].value if "appkey" in cookie else "")
+                    or (parse_qs(urlparse(self.path).query).get("k") or [""])[0])
+        return hmac.compare_digest(unquote(supplied), APP_KEY)
+
     def do_GET(self):
         route = urlparse(self.path).path
+        if route.startswith(("/api/", "/out/")) and not self.authorized():
+            return self.send(401, {"error": "Enter the team key."})
         if route in ("/", "/index.html"):
             return self.send_file(STATIC / "index.html")
         if route.startswith("/static/"):
@@ -281,6 +312,8 @@ class Handler(BaseHTTPRequestHandler):
         self.send(404, {"error": "not found"})
 
     def do_POST(self):
+        if not self.authorized():
+            return self.send(401, {"error": "Enter the team key."})
         if urlparse(self.path).path != "/api/run":
             return self.send(404, {"error": "not found"})
         try:
@@ -300,6 +333,8 @@ class Handler(BaseHTTPRequestHandler):
 def main():
     server = ThreadingHTTPServer(("127.0.0.1", PORT), Handler)
     print(f"LinkedIn Rebuild is running at http://127.0.0.1:{PORT}  (Ctrl+C to stop)")
+    if not APP_KEY:
+        print("No APP_KEY in .env: fine on this laptop, but never expose this port without one.")
     try:
         server.serve_forever()
     except KeyboardInterrupt:

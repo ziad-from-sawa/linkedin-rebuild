@@ -39,4 +39,16 @@ Then open http://127.0.0.1:8787. It walks the same five steps as the demo video:
 - **Needs** Python 3, Chrome or Edge, Claude Code installed and logged in (`claude` in a terminal), and the Apify token in `.env`.
 - Nothing sends from the app. Copy the email, attach `mockup.png`, send it from your own inbox.
 
+### The shared link
+
+https://linkedin-rebuild.vercel.app is the same page, for the team. Vercel only hosts the page: every run happens on Ziad's laptop, with his Claude Code login, reached through Tailscale Funnel (free). So the link works while that laptop is on and running:
+
+```
+python app/server.py
+tailscale funnel --bg 8787
+```
+
+- The team key is `APP_KEY` in Ziad's `.env`. Anyone opening the link types it once.
+- After changing the page, publish again with `python app/deploy_vercel.py https://zlaptop.tailccec07.ts.net`.
+
 `CLAUDE.md` has the steps, the rules and the file map.

@@ -48,8 +48,45 @@ const S = {
 
 // ── Data ────────────────────────────────────────────────────
 
-async function api(path, opts) {
-  const res = await fetch(path, opts);
+// The shared app asks for a team key once; it rides along as a header and a cookie (for images)
+const KEY_STORE = "lr-team-key";
+const storedKey = () => { try { return localStorage.getItem(KEY_STORE) || ""; } catch { return ""; } };
+
+function saveKey(key) {
+  try { localStorage.setItem(KEY_STORE, key); } catch { /* the cookie still works */ }
+  document.cookie = `appkey=${encodeURIComponent(key)}; path=/; max-age=31536000; SameSite=Lax${location.protocol === "https:" ? "; Secure" : ""}`;
+}
+
+let asking = null;
+function askKey(note) {
+  if (asking) return asking;
+  asking = new Promise((resolve) => {
+    const box = document.createElement("div");
+    box.className = "keywrap";
+    box.innerHTML = `<form class="glass keybox"><div class="mono">LINKEDIN REBUILD</div><h3>Team key</h3>
+      <p>${esc(note || "Ask Ziad for it. You only enter it once on this browser.")}</p>
+      <input type="password" autocomplete="current-password" placeholder="Paste the team key" required>
+      <button class="btn primary" type="submit">Enter</button></form>`;
+    document.body.append(box);
+    box.querySelector("input").focus();
+    box.querySelector("form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      saveKey(box.querySelector("input").value.trim());
+      box.remove();
+      asking = null;
+      resolve();
+    });
+  });
+  return asking;
+}
+
+async function api(path, opts = {}) {
+  const key = storedKey();
+  const res = await fetch(path, { ...opts, headers: { ...(opts.headers || {}), ...(key ? { "X-App-Key": key } : {}) } });
+  if (res.status === 401) {
+    await askKey(key ? "That key didn't work. Try again." : "");
+    return api(path, opts);
+  }
   const body = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(body.error || `Request failed (${res.status})`);
   return body;
@@ -649,6 +686,7 @@ function toast(text) {
 
 // A link like /#/jeffrey-bussgang/2 opens a saved founder at that step (handy mid-demo)
 async function boot() {
+  if (storedKey()) saveKey(storedKey());  // refresh the cookie the images need
   renderSteps();
   const m = location.hash.match(/^#\/([\w-]+)(?:\/(\d))?/);
   if (m) {
