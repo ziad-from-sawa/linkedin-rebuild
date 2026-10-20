@@ -29,13 +29,14 @@ One command, `/rebuild <linkedin-url>`. It takes a B2B founder's LinkedIn profil
 - **Nothing sends.** Emails are drafts for Ziad. Never send, post or message anyone.
 - **Anti-AI rules apply** to every word the workflow writes: `context/anti-ai-rules.md`. No em dashes or en dashes. Search for them before calling a file done.
 - **Pulled data stays local.** `out/` and `.env` are gitignored. Don't paste other people's data into chat threads.
+- **One Apify key, Dan's.** Everyone puts Dan's token in their own `.env`. This repo is public: never commit the token, print it, or paste it into chat or a prompt.
 
 ## Apify notes
 
 - The posts actor has no date filter. `scripts/pull.py` keeps the last 90 days and drops reposts.
 - Cost is about $0.02 per profile plus $0.005 per post (max 100). Check credit before batch runs.
 - `harvestapi` actors cap free plans at 10 lifetime runs. Use the `apimaestro` actors above.
-- A free Apify account is enough for testing.
+- The team shares Dan's Apify account, so every run spends his credits. Pull each founder once and reuse the saved JSON in `out/`.
 
 ## Files
 
