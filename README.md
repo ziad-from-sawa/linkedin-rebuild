@@ -13,4 +13,4 @@ Team 9: Ziad Hassan (founder), Charlotte Driscoll, Yuri Mukai, Dan Chauvin.
 
 `CLAUDE.md` has the steps, the rules and the file map.
 
-5. Photo generator (`scripts/generate_photos.py`): each person needs their own Gemini key from [Google AI Studio](https://aistudio.google.com/apikey). Details in `docs/generate-photos.md`.
+5. Photo generator (`scripts/generate_photos.py`): each person needs their own Gemini key from [Google AI Studio](https://aistudio.google.com/apikey). Turn on billing for that key in AI Studio, or the image steps fail. Details in `docs/generate-photos.md`.

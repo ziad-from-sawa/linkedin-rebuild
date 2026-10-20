@@ -2,7 +2,12 @@
 
 `scripts/generate_photos.py` uses Gemini to make a better headshot and a new banner from the data `scripts/pull.py` saved.
 
-> **Ziad and team: you need your own Gemini key.** Charlotte's key is not in this repo and is not shared. Get a free key at [Google AI Studio](https://aistudio.google.com/apikey) (sign in with Google, click Create API key), then add it to your `.env` as `GEMINI_API_KEY=` or run `export GEMINI_API_KEY=your_key` before using the script. Never commit the key: this repo is public.
+> **Ziad and team: you need your own Gemini key.** Charlotte's key is not in this repo and is not shared. Get a key at [Google AI Studio](https://aistudio.google.com/apikey) (sign in with Google, click Create API key), then add it to your `.env` as `GEMINI_API_KEY=` or run `export GEMINI_API_KEY=your_key` before using the script. Never commit the key: this repo is public.
+
+> **Billing is required for the image steps.** Free keys can write prompts (step 1) but have zero quota for Gemini image models, so steps 2 and 3 fail with `429 RESOURCE_EXHAUSTED ... limit: 0`. To fix:
+> 1. Go to [Google AI Studio](https://aistudio.google.com/apikey).
+> 2. Next to your key, click **Set up billing** (or **Upgrade**) and add a card. This links your key to a Google Cloud billing account.
+> 3. Wait a few minutes, then run the script again in the same Terminal window.
 
 ## Steps
 
