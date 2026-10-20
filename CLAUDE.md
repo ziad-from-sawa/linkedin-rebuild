@@ -48,3 +48,4 @@ One command, `/rebuild <linkedin-url>`. It takes a B2B founder's LinkedIn profil
 - `inputs/test-urls.md`: profiles to test on
 - `scripts/pull.py`: step 1, the data pull
 - `docs/pull-output.md`: what step 1 writes, field by field
+- `scripts/generate_photos.py`: Gemini headshot and banner generator (`docs/generate-photos.md`)
