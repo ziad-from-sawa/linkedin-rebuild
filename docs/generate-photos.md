@@ -2,6 +2,8 @@
 
 `scripts/generate_photos.py` uses Gemini to make a better headshot and a new banner from the data `scripts/pull.py` saved.
 
+> **Ziad and team: you need your own Gemini key.** Charlotte's key is not in this repo and is not shared. Get a free key at [Google AI Studio](https://aistudio.google.com/apikey) (sign in with Google, click Create API key), then add it to your `.env` as `GEMINI_API_KEY=` or run `export GEMINI_API_KEY=your_key` before using the script. Never commit the key: this repo is public.
+
 ## Steps
 
 1. Gemini (text) reads `profile.json` and the rubric and writes two image prompts.

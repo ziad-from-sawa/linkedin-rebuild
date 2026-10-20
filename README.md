@@ -12,3 +12,5 @@ Team 9: Ziad Hassan (founder), Charlotte Driscoll, Yuri Mukai, Dan Chauvin.
 4. Everyone: copy `.env.example` to `.env` and paste the team's Apify token, which is Dan's. Ask Dan for it in a direct message. This repo is public, so the token never goes in a file you commit, a chat thread or a Claude prompt.
 
 `CLAUDE.md` has the steps, the rules and the file map.
+
+5. Photo generator (`scripts/generate_photos.py`): each person needs their own Gemini key from [Google AI Studio](https://aistudio.google.com/apikey). Details in `docs/generate-photos.md`.
