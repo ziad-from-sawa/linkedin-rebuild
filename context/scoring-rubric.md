@@ -77,13 +77,14 @@ End with `Score: <n> of 7 pass`.
 **Pass** when all of these hold:
 - It's a custom image
 - It has text you can read at normal size
-- The text says what the company does or who it helps
+- The text says what their own company does or who it helps (for a Fit No, what they themselves do)
 
 **Fix** if any of these is true:
 - Empty or missing
 - LinkedIn's default blue and grey banner
 - A custom image with no message: skyline, stock photo, pattern, event photo
 - Text too small to read
+- Text about something else: a book, an event, a quote, a slogan that never says what the company does
 
 **Cite:** what the banner shows. *"`background_picture_url` is a city skyline with no text."*
 
@@ -91,7 +92,7 @@ End with `Score: <n> of 7 pass`.
 
 ## 4. About
 
-**Look at:** `about`. Count the characters and the bullet lines. A bullet line starts with `•`, `-`, `*`, `·`, an emoji, or a number followed by `.` or `)`.
+**Look at:** `about`. Count the characters and the bullet lines. A bullet line starts with `•`, `-`, `*`, `+`, `·`, an emoji, or a number followed by `.` or `)`.
 
 **Pass** when:
 - `about` has 2 or more bullet lines, anywhere in the text

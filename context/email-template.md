@@ -18,6 +18,10 @@ I even went ahead and built you a mockup of these changes. I attached it to this
 Ziad
 ```
 
+## The name
+
+`<First name>` is the name they go by: their LinkedIn first name, unless their own posts or About use a shorter form. `scripts/check.py` accepts either.
+
 ## The improvements
 
 - **1 to 4 of them**, picked from the teardown's Fix lines. Most visible first: banner, headline, headshot, About, Featured, website, button.
