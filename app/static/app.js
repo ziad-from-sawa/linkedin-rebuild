@@ -88,7 +88,7 @@ async function api(path, opts = {}) {
     return api(path, opts);
   }
   const body = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(body.error || `Request failed (${res.status})`);
+  if (!res.ok) throw Object.assign(new Error(body.error || `Request failed (${res.status})`), { status: res.status });
   return body;
 }
 
@@ -123,8 +123,16 @@ async function tick() {
     }
     if (S.job && ["done", "error"].includes(S.job.stage)) stopPolling();
     onData();
+    S.misses = 0;
   } catch (err) {
-    setStatus(err.message, "err");
+    // The link to the laptop blips now and then: keep polling through it, and give up only
+    // when the laptop has been unreachable for about a minute or the server says no for real
+    const blip = !err.status || [502, 503, 504].includes(err.status);
+    S.misses = (S.misses || 0) + 1;
+    if (blip && S.misses < 40) return setStatus("Reconnecting to the laptop…", "busy");
+    const text = blip ? "Can't reach the laptop that runs this. Check it's on and the app is running." : err.message;
+    setStatus(text, "err");
+    if (S.step > 1) toast(text);
     stopPolling();
   }
 }

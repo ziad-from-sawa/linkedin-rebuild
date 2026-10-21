@@ -181,9 +181,9 @@ def today_side(folder, plan):
 
 
 def check_plan(plan):
-    missing = [k for k in ("headline", "about", "banner", "headshot") if not plan.get(k)]
-    # null is allowed for these two: no site, or no post of theirs to pin, so the After side shows none
-    missing += [k for k in ("website", "featured") if k not in plan]
+    missing = [k for k in ("headline", "about", "banner") if not plan.get(k)]
+    # null is allowed for these: no photo, no site, or no post of theirs to pin, so the After side shows none
+    missing += [k for k in ("headshot", "website", "featured") if k not in plan]
     if isinstance(plan.get("banner"), dict) and not plan["banner"].get("text"):
         missing.append("banner.text")
     if missing:

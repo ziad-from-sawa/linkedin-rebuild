@@ -201,7 +201,8 @@ def check_rebuild(folder, statuses, r):
                 "the title isn't in any of their posts or featured items. Use the post's first line, exactly")
     refs = [given("headshot"), banner.get("image"), banner.get("logo"), featured.get("image")]
     missing = [ref for ref in refs if ref and not re.match(r"https?://", ref) and not (folder / ref).exists()]
-    r.check(bool(plan.get("headshot")) and not missing, "after: image files exist",
+    has_photo = any((folder / "raw" / "images").glob("headshot.*"))
+    r.check((bool(plan.get("headshot")) or not has_photo) and not missing, "after: image files exist",
             f"missing: {', '.join(missing) or 'headshot not set'}")
     copy = "\n".join(s for s in strings({k: v for k, v in plan.items() if k != "button_today"}) if s != KEEP)
     r.check(not DASHES.search(copy), "after: no em or en dashes", "rebuild.json has one")
